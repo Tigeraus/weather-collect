@@ -2,11 +2,18 @@ from datetime import *
 import MySQLdb
 import time  
 import os
+import ConfigParser
 
-DBHOST = 'dbhost'
-DBUSER = 'user'
-DBPASSWD = 'passwd'
-DBNAME = 'name'
+
+BASE_DIR = os.path.dirname(__file__)
+#print BASE_DIR
+config=ConfigParser.ConfigParser() 
+with open('../config.cfg','r') as cfgfile: 
+    config.readfp(cfgfile)
+    DBHOST = config.get('dbinfo','dbhost')
+	DBUSER = config.get('dbinfo','dbuser')
+	DBPASSWD = config.get('dbinfo','dbpasswd')
+	DBNAME = config.get('dbinfo','dbname')
 
 def todb(fname):
 	errormsg = 'everything ok'
