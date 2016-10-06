@@ -3,6 +3,7 @@
 
 
 import lib.weathquery as wq
+import lib.Storage as st
 import os
 from BeautifulSoup import BeautifulSoup  
 import json
@@ -43,9 +44,9 @@ def SearchWeather():
 	for i in range(len(CityList)):
 		cityw = wq.CityWeather()
 		CityId = CityList[i]
-		print type(CityId)
+		#print type(CityId)
 		cityw = wq.getWeather(CityId)
-		print cityw
+		#print cityw
 		e = {cityw.name: cityw}
 		CityDict.update(e)
 	return CityDict
@@ -53,11 +54,13 @@ def SearchWeather():
 def StorageWeather(CityDict):
 	now = time.localtime(time.time())
 	rightnow = time.strftime("%Y-%m-%d",now)
-	f = open('weather'+rightnow+'.txt','w')
+	filename = 'weather-data/weather'+rightnow+'.txt'
+	f = open(filename,'w')
 	for city in CityDict:
 		cityinfo = CityDict.get(city)
 		f.write(cityinfo.name+' '+cityinfo.date+' '+cityinfo.weather+' '+str(cityinfo.longitude)+'; '+str(cityinfo.latitude)+' '+str(cityinfo.low_tmp)+'&deg;C' + str(cityinfo.high_tmp)+'&deg;C'+' '+cityinfo.wd+' '+cityinfo.ws+'\n')
 	f.close()
+	return filename
 
 
 
@@ -65,9 +68,10 @@ if __name__ == '__main__':
         BASE_DIR = os.path.dirname(__file__)
         print BASE_DIR
 	t0 = time.time()
-	dict = SearchWeather()
+	dictx = SearchWeather()
 	t1 = time.time()
-	print 'Time we used to search the weather: ' + str(t1-t0) + ' Seconds'
-	StorageWeather(dict)
+	filename = StorageWeather(dictx)
 	t2 =time.time()
-	print 'Time we used to search the weather: ' + str(t2-t1) + ' Seconds'
+	dbinfo = st.todb(filename)
+	print dbinfo
+
