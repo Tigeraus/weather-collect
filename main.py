@@ -23,9 +23,6 @@ CitySum = soup.findAll('p',style="text-align:left;")
 
 for city in CitySum:
 	if city.string:
-		#print city.string
-		print city.string[:9].encode('utf-8')
-		print city.string[10:].encode('utf-8')
 		e = city.string[:9].encode('utf-8')
 		CityList.append(e)
 	else:
