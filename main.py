@@ -28,7 +28,7 @@ for city in CitySum:
 	else:
 		pass
 
-print CityList
+#print CityList
 
 
 
@@ -63,7 +63,7 @@ def StorageWeather(CityDict):
 
 if __name__ == '__main__':
         BASE_DIR = os.path.dirname(__file__)
-        print BASE_DIR
+        #print BASE_DIR
 	t0 = time.time()
 	dictx = SearchWeather()
 	t1 = time.time()
