@@ -8,12 +8,16 @@ import ConfigParser
 BASE_DIR = os.path.dirname(__file__)
 #print BASE_DIR
 config=ConfigParser.ConfigParser() 
-with open('../config.cfg','r') as cfgfile: 
+
+part = os.path.abspath(os.path.dirname(__file__)+os.path.sep+"..")
+print str(part)
+with open(str(part)+'/config.cfg','r') as cfgfile: 
     config.readfp(cfgfile)
     DBHOST = config.get('dbinfo','dbhost')
-	DBUSER = config.get('dbinfo','dbuser')
-	DBPASSWD = config.get('dbinfo','dbpasswd')
-	DBNAME = config.get('dbinfo','dbname')
+    DBUSER = config.get('dbinfo','dbuser')
+    DBPASSWD = config.get('dbinfo','dbpasswd')
+    DBNAME = config.get('dbinfo','dbname')
+
 
 def todb(fname):
 	errormsg = 'everything ok'
