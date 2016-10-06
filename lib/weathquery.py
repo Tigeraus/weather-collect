@@ -83,7 +83,8 @@ def getWeather(cityid):
 		cw.ws = 'error'
 		return cw
 	finally:
-		print 'Done...'
+		#print 'Done...'
+		pass
 
 if __name__ == '__main__':
 	wangjiang = "101021300"

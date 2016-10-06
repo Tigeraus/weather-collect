@@ -23,6 +23,7 @@ def todb(fname):
 	errormsg = 'everything ok'
 	try:
 		f = open(fname,"r")
+		date0s = fname[7:-4]
 		conn = MySQLdb.connect(host=DBHOST,user=DBUSER,passwd=DBPASSWD,db=DBNAME,charset="utf8")
 		cur = conn.cursor()
 		sql = """CREATE TABLE `%s` (city VARCHAR(255),weather VARCHAR(45),aqi VARCHAR(255),humidity VARCHAR(45),temperature VARCHAR(255),wind_direction VARCHAR(255),wind_scale VARCHAR(255))""" % (date0s)
